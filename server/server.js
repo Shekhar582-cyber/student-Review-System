@@ -35,7 +35,7 @@ app.use('/api/auth/login', authLimiter);
 // CORS with specific origins for production
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-domain.com', 'https://www.your-domain.com']
+    ? true // Allow all origins in production for Vercel deployment
     : ['http://localhost:3000', 'http://localhost:5173'],
   credentials: true,
   optionsSuccessStatus: 200
@@ -90,11 +90,27 @@ process.on('SIGINT', async () => {
   }
 });
 
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || 'development'
+  });
+});
+
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/teachers', require('./routes/teachers'));
 app.use('/api/reviews', require('./routes/reviews'));
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// For Vercel deployment
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+// Export for Vercel
+module.exports = app;
