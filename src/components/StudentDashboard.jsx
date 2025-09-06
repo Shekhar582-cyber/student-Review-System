@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 
 const StudentDashboard = () => {
   const [teachers, setTeachers] = useState([]);
@@ -46,8 +47,8 @@ const StudentDashboard = () => {
       
       // If user has a department, filter teachers by that department
       const url = user && user.department 
-        ? `http://localhost:3001/api/teachers?department=${encodeURIComponent(user.department)}`
-        : 'http://localhost:3001/api/teachers';
+        ? `${API_BASE_URL}/teachers?department=${encodeURIComponent(user.department)}`
+        : `${API_BASE_URL}/teachers`;
       
       console.log('API URL:', url);
       
@@ -69,7 +70,7 @@ const StudentDashboard = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:3001/api/reviews', {
+      await axios.post(`${API_BASE_URL}/reviews`, {
         teacherId: selectedTeacher._id,
         ...reviewForm
       }, {
