@@ -44,7 +44,7 @@ web: cd server && npm start
 ```
 
 ### `Dockerfile`
-- Uses Node.js 18 Alpine
+- Uses Node.js 20 Alpine
 - Installs dependencies for both frontend and backend
 - Builds the frontend
 - Starts the server
@@ -62,7 +62,7 @@ web: cd server && npm start
 3. **MongoDB connection**: Verify `MONGODB_URI` is correct and uses a compatible MongoDB version
 4. **Build errors**: Check Railway build logs for specific errors
 5. **Package version conflicts**: Ensure all package versions are compatible
-6. **Node.js version**: Railway uses Node.js 18 by default, ensure all packages are compatible
+6. **Node.js version**: Updated to use Node.js 20 for Vite compatibility (Vite 4+ requires Node.js 14.18+, Vite 7+ requires Node.js 20.15+ or 22.2+)
 7. **Vite build issues**: Check for Vite configuration errors
 
 ### Debug Commands:
