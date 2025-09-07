@@ -59,8 +59,11 @@ web: cd server && npm start
 ### Common Issues:
 1. **Port binding**: Ensure server listens on `0.0.0.0:PORT`
 2. **Environment variables**: Check all required vars are set
-3. **MongoDB connection**: Verify `MONGODB_URI` is correct
+3. **MongoDB connection**: Verify `MONGODB_URI` is correct and uses a compatible MongoDB version
 4. **Build errors**: Check Railway build logs for specific errors
+5. **Package version conflicts**: Ensure all package versions are compatible
+6. **Node.js version**: Railway uses Node.js 18 by default, ensure all packages are compatible
+7. **Vite build issues**: Check for Vite configuration errors
 
 ### Debug Commands:
 ```bash
@@ -70,6 +73,24 @@ curl https://your-app.railway.app/api/health
 # Check Railway logs
 railway logs
 ```
+
+### Version Compatibility Issues
+
+If you encounter build failures, check these common version compatibility issues:
+
+1. **React and React DOM**: Use version 18.x.x (not 19.x.x which may cause issues)
+2. **Mongoose**: Use version 7.x.x (not 8.x.x which may require Node.js 20+)
+3. **Express**: Use version 4.x.x (not 5.x.x which is still in beta)
+4. **NPM Dependencies**: Use `--legacy-peer-deps` flag if needed
+
+### Build Process Fixes
+
+If the build process fails:
+
+1. Check Vite configuration in `vite.config.js`
+2. Ensure proper proxy settings for API calls
+3. Configure proper build output directory
+4. Use terser for minification to reduce bundle size
 
 ## Performance Notes
 - Railway provides automatic scaling

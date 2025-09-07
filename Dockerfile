@@ -8,8 +8,9 @@ WORKDIR /app
 COPY package*.json ./
 COPY server/package*.json ./server/
 
-# Install dependencies
-RUN npm install
+# Install dependencies with specific npm version
+RUN npm install -g npm@9.8.1
+RUN npm install --legacy-peer-deps
 RUN cd server && npm install
 
 # Copy source code
