@@ -25,6 +25,5 @@ EXPOSE 3001
 ENV NODE_ENV=production
 ENV PORT=3001
 
-# Start the application
-WORKDIR /app/server
-CMD ["npm", "start"]
+# Start the application from server directory
+CMD ["sh", "-c", "cd server && npm start"]
