@@ -18,6 +18,9 @@ COPY . .
 # Build frontend
 RUN npm run build
 
+# Make start script executable
+RUN chmod +x start.sh
+
 # Expose port
 EXPOSE 3001
 
@@ -25,5 +28,5 @@ EXPOSE 3001
 ENV NODE_ENV=production
 ENV PORT=3001
 
-# Start the application from server directory
-CMD ["sh", "-c", "cd server && npm start"]
+# Start the application
+CMD ["./start.sh"]

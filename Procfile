@@ -1,2 +1,2 @@
-web: sh -c "cd server && npm start"
+web: sh start.sh
 
