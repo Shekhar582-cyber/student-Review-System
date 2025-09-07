@@ -8,12 +8,9 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     sourcemap: false,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-      },
-    },
+    minify: 'esbuild',
+    target: 'es2015',
+    cssMinify: true,
   },
   server: {
     proxy: {
