@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "cd server && npm install --production",
+    "start": "cd server && npm start",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "cd server && npm start",
     "build:production": "npm run build && npm run build:server",
     "build:server": "cd server && npm install --production",
     "deploy:netlify": "npm run build && echo 'Ready for Netlify deployment'",

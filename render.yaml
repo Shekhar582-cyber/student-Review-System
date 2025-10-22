@@ -1,10 +1,10 @@
 services:
   - type: web
-    name: teacher-review-api
+    name: student-review-system
     env: node
     region: oregon
     plan: starter
-    buildCommand: cd server && npm install
+    buildCommand: cd server && npm install --production
     startCommand: cd server && npm start
     healthCheckPath: /api/health
     envVars:
@@ -20,4 +20,4 @@ services:
     rootDir: .
     scaling:
       minInstances: 1
-      maxInstances: 3
+      maxInstances: 1
