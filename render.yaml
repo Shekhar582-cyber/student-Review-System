@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: teacher-review-api
+    env: node
+    region: oregon
+    plan: starter
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+    autoDeploy: true
+    rootDir: .
+    scaling:
+      minInstances: 1
+      maxInstances: 3
